@@ -1,9 +1,13 @@
-import { createApp } from "vue";
-import App from "./App.vue";
-import router from "./router";
-import store from "./store";
+import { createApp } from 'vue';
+import App from './App.vue';
+import router, { setupRouter } from '@/router';
 
-createApp(App)
-  .use(store)
-  .use(router)
-  .mount("#app");
+import '@/styles/index.less';
+
+const app = createApp(App);
+
+setupRouter(app);
+
+router.isReady().then(() => {
+  app.mount('#app', true);
+});

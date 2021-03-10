@@ -1,13 +1,15 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-  </div>
+  <Sider />
 </template>
 
 <script lang="ts">
   import { defineComponent } from 'vue';
 
+  import Sider from './LayoutSider.vue';
   export default defineComponent({
-    name: 'Home',
+    name: 'LayoutSider',
+    components: {
+      Sider,
+    },
   });
 </script>
