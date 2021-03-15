@@ -14,10 +14,12 @@ export const asyncRoutes = [...routeModuleList];
 export const RootRoute: AppRouteRecordRaw = {
   path: '/',
   name: 'Root',
-  redirect: '/home',
+  redirect: '/analysis',
+  component: LAYOUT,
   meta: {
     title: 'Root',
   },
+  children: [...asyncRoutes],
 };
 
 /*
@@ -36,20 +38,19 @@ export const PAGE_NOT_FOUND_ROUTE: AppRouteRecordRaw = {
   name: 'ErrorPage',
   component: LAYOUT,
   meta: {
-    title: 'ErrorPage',
-    hideBreadcrumb: true,
+    title: '页面未找到',
   },
   children: [
     {
       path: '/:path(.*)*',
       name: 'ErrorPage',
+      component: () => import('@/views/404.vue'),
       meta: {
-        title: 'ErrorPage',
-        hideBreadcrumb: true,
+        title: '页面未找到',
       },
     },
   ],
 };
 
 // 基础路由 不用权限
-export const basicRoutes = [RootRoute, ...asyncRoutes];
+export const basicRoutes = [RootRoute, PAGE_NOT_FOUND_ROUTE];

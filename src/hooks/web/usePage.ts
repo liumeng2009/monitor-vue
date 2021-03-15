@@ -12,5 +12,5 @@ export function useGo() {
     if (!opt) return;
     isReplace ? replace(opt).catch(handleError) : push(opt).catch(handleError);
   }
-  return { go };
+  return go;
 }

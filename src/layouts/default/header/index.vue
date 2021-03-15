@@ -3,7 +3,7 @@
     <div :class="`${prefixCls}-action`">
       <UserDropDown />
       <FullScreen :class="`${prefixCls}-action__item fullscreen-item`" />
-      <Notify />
+      <!-- <Notify /> -->
     </div>
   </Header>
 </template>
@@ -13,7 +13,7 @@
   import { Layout } from 'ant-design-vue';
   import { useDesign } from '@/hooks/web/useDesign';
 
-  import { FullScreen, UserDropDown, Notify } from './components';
+  import { FullScreen, UserDropDown } from './components';
 
   export default defineComponent({
     name: 'LayoutHeader',
@@ -21,7 +21,6 @@
       Header: Layout.Header,
       FullScreen,
       UserDropDown,
-      Notify,
     },
     setup() {
       const { prefixCls } = useDesign('layout-header');

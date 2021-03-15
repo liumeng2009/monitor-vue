@@ -1,5 +1,5 @@
 <template>
-  <Menu :selectedKeys="selectedKeys" :mode="'horizontal'">
+  <Menu :selectedKeys="selectedKeys" :mode="'inline'" @click="handleMenuClick">
     <template v-for="item in items" :key="item.path">
       <BasicSubMenuItem :item="item" />
     </template>
@@ -32,7 +32,13 @@
         selectedKeys: [],
       });
 
+      function handleMenuClick({ key }: { key: string; keyPath: string[] }) {
+        console.log(key);
+        menuState.selectedKeys = [key];
+      }
+
       return {
+        handleMenuClick,
         ...toRefs(menuState),
       };
     },

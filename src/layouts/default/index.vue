@@ -2,10 +2,10 @@
   <Layout>
     <LayoutHeader />
     <Layout>
-      <LayoutSider />
+      <!-- <LayoutSider /> -->
       <LayoutContent />
     </Layout>
-    <Footer>Footer</Footer>
+    <Footer>尾部区域</Footer>
   </Layout>
 </template>
 
@@ -13,7 +13,6 @@
   import { defineComponent } from 'vue';
   import { Layout } from 'ant-design-vue';
   import LayoutHeader from './header/index.vue';
-  import LayoutSider from './sider/index.vue';
   import LayoutContent from './content/index.vue';
 
   export default defineComponent({
@@ -21,7 +20,6 @@
     components: {
       Layout,
       LayoutHeader,
-      LayoutSider,
       LayoutContent,
       Footer: Layout.Footer,
     },
