@@ -1,6 +1,5 @@
 <template>
   <div>
-    <h1>page</h1>
     <router-view>
       <template #default="{ Component, route }">
         <keep-alive v-if="route.meta.ignoreKeepAlive">
