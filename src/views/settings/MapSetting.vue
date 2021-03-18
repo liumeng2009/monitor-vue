@@ -1,6 +1,6 @@
 <template>
   <div class="about">
-    <Row>
+    <Row :gutter="8">
       <Col :span="4">
         <List :bordered="true">
           <ListItem><AlertOutlined draggable="true" style="font-size: 20px" /></ListItem>
@@ -10,7 +10,7 @@
       </Col>
       <Col :span="20">
         <div class="map-wrapper" @drop="drop" @dragover="allowDrop">
-          <img :src="MapPng" alt="map" />
+          <img :src="MapPng" alt="map" ref="imageRef" />
         </div>
       </Col>
     </Row>
@@ -18,11 +18,12 @@
 </template>
 
 <script lang="ts">
-  import { defineComponent } from 'vue';
+  import { defineComponent, nextTick, ref } from 'vue';
   import { Row, Col, List } from 'ant-design-vue';
   import { AlertOutlined } from '@ant-design/icons-vue';
-  import * as MapPng from '@/assets/images/map.png';
   import { DropEvent } from 'node_modules/ant-design-vue/lib/tree/Tree';
+
+  const MapPng = require('@/assets/images/map.png');
 
   export default defineComponent({
     name: 'MapSetting',
@@ -34,6 +35,17 @@
       AlertOutlined,
     },
     setup() {
+      const imageRef = ref<HTMLImageElement | null>(null);
+
+      nextTick(() => {
+        imageRef?.value?.addEventListener('load', function (e: Event): any {
+          const path = e.composedPath();
+          console.log(path);
+          console.log(e);
+        });
+      });
+
+      console.log(imageRef);
       const drop = (e: DropEvent) => {
         console.log(e);
       };
@@ -43,6 +55,7 @@
         // console.log(e);
       };
       return {
+        imageRef,
         MapPng,
         drop,
         allowDrop,
