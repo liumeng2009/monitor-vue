@@ -1,14 +1,19 @@
 @header-prefix-cls: ~'@{namespace}-layout-header';
 
 .@{header-prefix-cls} {
+  position: relative;
   display: flex;
   flex-direction: row-reverse;
   height: @header-height;
-  line-height: @header-height;
-  background-color: @white;
+  background: url(~@/assets/images/layout/header-bg.png) center 22px no-repeat;
 
-  &.ant-layout-header {
-    padding-right: 0px;
+  &-logo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 310px;
+    height: 34px;
+    transform: translate(-145px, 0px);
   }
 
   &-action {
@@ -20,18 +25,17 @@
     flex-direction: row-reverse;
 
     &__item {
-      height: @header-height + 10;
       padding: 0 8px;
       font-size: 1.2em;
       cursor: pointer;
 
       &.fullscreen-item {
-        margin-left: 10px;
+        margin-top: 20px;
       }
 
       span[role='img'] {
         padding: 2px 2px;
-        border: @primary-color 1px solid;
+        border: @primary-color 2px solid;
       }
     }
   }

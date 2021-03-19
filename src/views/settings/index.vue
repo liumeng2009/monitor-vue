@@ -1,13 +1,15 @@
 <template>
-  <Tabs v-model:activeKey="activeKey" @change="handleTabChange">
-    <TabPane
-      v-for="item in menus"
-      :key="'/settings/' + item.path"
-      :tab="item.meta && item.meta.title"
-    >
-      <router-view />
-    </TabPane>
-  </Tabs>
+  <div class="setting-container">
+    <Tabs v-model:activeKey="activeKey" @change="handleTabChange">
+      <TabPane
+        v-for="item in menus"
+        :key="'/settings/' + item.path"
+        :tab="item.meta && item.meta.title"
+      >
+        <router-view />
+      </TabPane>
+    </Tabs>
+  </div>
 </template>
 
 <script lang="ts">
@@ -52,4 +54,9 @@
   });
 </script>
 
-<style lang="less"></style>
+<style lang="less" scoped>
+  .setting-container {
+    background: #ffffff;
+    border-radius: 10px;
+  }
+</style>

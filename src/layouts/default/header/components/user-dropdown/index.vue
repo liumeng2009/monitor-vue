@@ -6,8 +6,9 @@
       <span :class="`@{prefixCls}__info`">管理员</span>
       <span :class="`@{prefixCls}__arrow`"></span>
     </span> -->
-    <span :class="[prefixCls]">
-      <MenuOutlined />
+    <span :class="`${prefixCls}`">
+      <SettingOutlined />
+      <div :class="`${prefixCls}__arrow`"></div>
     </span>
     <template #overlay>
       <Menu @click="handleMenuClick">
@@ -23,7 +24,7 @@
 <script lang="ts">
   import { computed, defineComponent } from 'vue';
   import { Dropdown, Menu } from 'ant-design-vue';
-  import { MenuOutlined } from '@ant-design/icons-vue';
+  import { SettingOutlined } from '@ant-design/icons-vue';
 
   import { userStore } from '@/store/modules/user';
   import MenuItem from './DropMenuItem.vue';
@@ -40,7 +41,7 @@
       Dropdown,
       Menu,
       MenuItem,
-      MenuOutlined,
+      SettingOutlined,
     },
     setup() {
       const { prefixCls } = useDesign('header-user-dropdown');
@@ -78,36 +79,19 @@
 
   .@{prefix-cls} {
     display: flex;
-    height: @header-height;
-    min-width: 100px;
+    height: 30px;
     padding: 0 0 0 10px;
     padding-right: 10px;
-    margin-left: 80px;
+    margin-top: 15px;
     overflow: hidden;
-    font-size: 12px;
+    font-size: 25px;
     cursor: pointer;
     align-items: center;
-
-    img {
-      width: 32px;
-      height: 32px;
-      margin-right: 12px;
-      margin-top: -10px;
-    }
-
-    &__info {
-      margin-top: -10px;
-    }
-
-    &__header {
-      border-radius: 50%;
-    }
 
     &__arrow {
       width: 0px;
       height: 0px;
       margin-left: 12px;
-      margin-top: -6px;
       .down-arrow(6px, @primary-color);
     }
   }

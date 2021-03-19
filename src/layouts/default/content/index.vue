@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div :class="`${prefixCls}`">
     <router-view>
       <template #default="{ Component, route }">
         <keep-alive v-if="route.meta.ignoreKeepAlive">
@@ -12,13 +12,21 @@
 </template>
 
 <script lang="ts">
+  import { useDesign } from '@/hooks/web/useDesign';
   import { defineComponent } from 'vue';
   import { getKey } from './useCache';
 
   export default defineComponent({
     name: 'PageLayout',
     setup() {
-      return { getKey };
+      const { prefixCls } = useDesign('layout-content');
+      return {
+        prefixCls,
+        getKey,
+      };
     },
   });
 </script>
+<style lang="less">
+  @import url('./index.less');
+</style>
