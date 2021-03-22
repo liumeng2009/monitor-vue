@@ -5,7 +5,7 @@
       <!-- <LayoutSider /> -->
       <LayoutContent />
     </Layout>
-    <Footer>尾部区域</Footer>
+    <!-- <Footer>尾部区域</Footer> -->
   </Layout>
 </template>
 
@@ -21,7 +21,6 @@
       Layout,
       LayoutHeader,
       LayoutContent,
-      Footer: Layout.Footer,
     },
     setup() {
       console.log('---layout index created---');

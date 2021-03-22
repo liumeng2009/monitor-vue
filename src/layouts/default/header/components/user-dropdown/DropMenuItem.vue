@@ -7,7 +7,23 @@
       </span>
     </template>
     <template v-for="(itm, idx) in item.children" :key="idx">
-      <MenuItem :key="itm.path" v-if="!itm.meta.hideMenu">
+      <SubMenu v-if="itm.children && itm.children.length > 0" :key="itm.path">
+        <template #title>
+          <span class="flex items-center">
+            <component :is="itm.meta.icon" />
+            <span>{{ itm.meta.title }}</span>
+          </span>
+        </template>
+        <template v-for="(im, ix) in itm.children" :key="ix">
+          <MenuItem :key="im.path" v-if="!im.meta.hideMenu">
+            <span class="flex items-center">
+              <component :is="im.meta.icon" />
+              <span>{{ im.meta.title }}</span>
+            </span>
+          </MenuItem>
+        </template>
+      </SubMenu>
+      <MenuItem v-else>
         <span class="flex items-center">
           <component :is="itm.meta.icon" />
           <span>{{ itm.meta.title }}</span>
@@ -26,8 +42,13 @@
 <script lang="ts">
   import { defineComponent, PropType } from 'vue';
   import { Menu } from 'ant-design-vue';
-  import { SettingOutlined, FundOutlined } from '@ant-design/icons-vue';
-  // import Icon from '@/components/Icon/index';
+  import {
+    SettingOutlined,
+    FundOutlined,
+    EnvironmentOutlined,
+    LockOutlined,
+    WarningOutlined,
+  } from '@ant-design/icons-vue';
   import { Menu as MenuType } from '@/router/types';
 
   export default defineComponent({
@@ -37,6 +58,9 @@
       SubMenu: Menu.SubMenu,
       SettingOutlined,
       FundOutlined,
+      EnvironmentOutlined,
+      LockOutlined,
+      WarningOutlined,
     },
     props: {
       item: {
@@ -46,5 +70,3 @@
     },
   });
 </script>
-
-<style lang="less"></style>

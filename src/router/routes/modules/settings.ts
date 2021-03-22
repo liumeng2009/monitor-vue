@@ -11,21 +11,41 @@ const settings: AppRouteModule = {
   },
   children: [
     {
-      path: 'map',
-      name: 'Map',
-      component: () => import('@/views/settings/MapSetting.vue'),
-      meta: {
-        title: '地图配置',
-        icon: 'SettingOutlined',
-      },
-    },
-    {
       path: 'common',
       name: 'Common',
       component: () => import('@/views/settings/CommonSetting.vue'),
       meta: {
         title: '基本配置',
         icon: 'SettingOutlined',
+      },
+      children: [
+        {
+          path: 'changepw',
+          name: 'ChangePw',
+          component: () => import('@/views/settings/ChangePassword.vue'),
+          meta: {
+            title: '修改密码',
+            icon: 'LockOutlined',
+          },
+        },
+        {
+          path: 'warning',
+          name: 'Warning',
+          component: () => import('@/views/settings/WarningSetting.vue'),
+          meta: {
+            title: '预警设置',
+            icon: 'WarningOutlined',
+          },
+        },
+      ],
+    },
+    {
+      path: 'map',
+      name: 'Map',
+      component: () => import('@/views/settings/MapSetting.vue'),
+      meta: {
+        title: '地图配置',
+        icon: 'EnvironmentOutlined',
       },
     },
   ],

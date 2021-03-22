@@ -92,6 +92,7 @@
       width: 0px;
       height: 0px;
       margin-left: 12px;
+      margin-top: 6px;
       .down-arrow(6px, @primary-color);
     }
   }

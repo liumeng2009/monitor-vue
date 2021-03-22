@@ -6,14 +6,16 @@
         :key="'/settings/' + item.path"
         :tab="item.meta && item.meta.title"
       >
-        <router-view />
+        <div class="setting-wrapper" :style="{ height: wrapperHeight + 'px' }">
+          <router-view :wrapperHeight="wrapperHeight" />
+        </div>
       </TabPane>
     </Tabs>
   </div>
 </template>
 
 <script lang="ts">
-  import { defineComponent, ref, unref } from 'vue';
+  import { defineComponent, ref, unref, onUnmounted } from 'vue';
   import { Tabs } from 'ant-design-vue';
   import { asyncRoutes } from '@/router/routes/index';
   import { AppRouteRecordRaw } from '@/router/types';
@@ -45,10 +47,31 @@
         go(e);
       };
 
+      const wrapperHeight = ref<Number>(0);
+
+      const calWrapperHeight = (): void => {
+        const windowHeight = window.document.documentElement.clientHeight;
+        const headerHeight = 102;
+        const contentPaddingHeight = 16;
+        const tabHeader = 78;
+        const tabContentPadding = 16;
+        wrapperHeight.value =
+          windowHeight - headerHeight - contentPaddingHeight * 2 - tabHeader - tabContentPadding;
+      };
+
+      calWrapperHeight();
+
+      window.addEventListener('resize', calWrapperHeight, false);
+
+      onUnmounted(() => {
+        window.removeEventListener('resize', calWrapperHeight, false);
+      });
+
       return {
         menus,
         handleTabChange,
         activeKey,
+        wrapperHeight,
       };
     },
   });
@@ -58,5 +81,12 @@
   .setting-container {
     background: #ffffff;
     border-radius: 10px;
+
+    .setting-wrapper {
+      min-height: 600px;
+      padding: 0px 48px 16px 48px;
+      overflow-x: hidden;
+      overflow-y: auto;
+    }
   }
 </style>
