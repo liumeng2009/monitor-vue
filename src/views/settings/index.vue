@@ -35,7 +35,12 @@
       let menus: AppRouteRecordRaw[] = [];
 
       const path = unref(currentRoute).path;
-      const activeKey = ref<String>(path);
+      let activeKey = '';
+      if (path.indexOf('/settings/common') > -1) {
+        activeKey = '/settings/common';
+      } else if (path.indexOf('/settings/map') > -1) {
+        activeKey = '/settings/map';
+      }
 
       asyncRoutes.forEach((ele) => {
         if (ele.name === 'Settings') {

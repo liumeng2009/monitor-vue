@@ -23,7 +23,7 @@
           </MenuItem>
         </template>
       </SubMenu>
-      <MenuItem v-else>
+      <MenuItem v-else :key="itm.path">
         <span class="flex items-center">
           <component :is="itm.meta.icon" />
           <span>{{ itm.meta.title }}</span>
@@ -31,7 +31,7 @@
       </MenuItem>
     </template>
   </SubMenu>
-  <MenuItem v-else>
+  <MenuItem v-else :key="item.path">
     <span class="flex items-center">
       <component :is="item.meta.icon" />
       <span>{{ item.meta.title }}</span>

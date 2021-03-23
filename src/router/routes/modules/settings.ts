@@ -14,6 +14,7 @@ const settings: AppRouteModule = {
       path: 'common',
       name: 'Common',
       component: () => import('@/views/settings/CommonSetting.vue'),
+      redirect: '/settings/common/warning',
       meta: {
         title: '基本配置',
         icon: 'SettingOutlined',
