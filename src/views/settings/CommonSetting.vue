@@ -6,15 +6,19 @@
           :class="{ title: true, selected: path === '/settings/common/warning' }"
           @click="go('/settings/common/warning')"
         >
-          <i></i>
-          预警通知
+          <div class="title-wrapper">
+            <i></i>
+            预警通知
+          </div>
         </div>
         <div
           :class="{ title: true, selected: path === '/settings/common/changepw' }"
           @click="go('/settings/common/changepw')"
         >
-          <i></i>
-          修改密码
+          <div class="title-wrapper">
+            <i></i>
+            修改密码
+          </div>
         </div>
       </Col>
       <Col
@@ -56,9 +60,14 @@
 
 <style lang="less" scoped>
   .title {
-    padding: 4px 54px;
+    padding: 1px 54px;
     margin-bottom: 16px;
     cursor: pointer;
+
+    .title-wrapper {
+      height: 35px;
+      line-height: 35px;
+    }
 
     &.selected {
       .title-bg();

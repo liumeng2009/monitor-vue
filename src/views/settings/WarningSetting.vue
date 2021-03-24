@@ -8,7 +8,11 @@
       </CheckboxGroup>
     </FormItem>
     <FormItem label="预警类型" :labelCol="{ span: 4 }" labelAlign="right">
-      <Input />
+      <CheckboxGroup v-model:value="currentWarningType">
+        <Checkbox v-for="(warning, index) in warningTypes" :key="index" :value="warning.value">
+          {{ warning.label }}
+        </Checkbox>
+      </CheckboxGroup>
     </FormItem>
     <FormItem label="手机号" :labelCol="{ span: 4 }" labelAlign="right">
       <Input />
@@ -39,9 +43,17 @@
       ];
       const currentNoticeType = ref([]);
 
+      const warningTypes: UIConfig[] = [
+        { label: '设备异常', value: 'equip' },
+        { label: '灯光异常', value: 'lamp' },
+      ];
+      const currentWarningType = ref([]);
+
       return {
         noticeTypes,
         currentNoticeType,
+        warningTypes,
+        currentWarningType,
       };
     },
   });
