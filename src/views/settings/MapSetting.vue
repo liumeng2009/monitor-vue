@@ -218,63 +218,6 @@
 <style lang="less" scoped>
   .title {
     .title-bg();
-    /*
-    position: relative;
-    color: @primary-color;
-    padding: 4px 54px;
-    border: @primary-color 1px solid;
-    border-right: none;
-    background: linear-gradient(
-      135deg,
-      lighten(@primary-color, 45%) 0%,
-      lighten(@primary-color, 55%) 10%,
-      #fff 100%
-    );
-    border-image: linear-gradient(
-        135deg,
-        @primary-color 0%,
-        lighten(@primary-color, 40%) 30%,
-        #fff 100%
-      )
-      10 10;
-    margin-bottom: 16px;
-    z-index: 1;
-
-    &:before {
-      content: '';
-      position: absolute;
-      top: -23px;
-      left: -23px;
-      width: 0px;
-      height: 0px;
-      background: #fff;
-      .down-arrow(22px, #fff);
-      transform: rotate(135deg);
-      z-index: 2;
-    }
-
-    &:after {
-      content: '';
-      position: absolute;
-      top: -19px;
-      left: -19px;
-      width: 0px;
-      height: 0px;
-      .down-arrow(18px, @primary-color);
-      transform: rotate(135deg);
-      z-index: 2;
-    }
-
-    & > i {
-      position: absolute;
-      background-color: @primary-color;
-      width: 1px;
-      height: 45px;
-      top: -8px;
-      left: 15px;
-      transform: rotate(45deg);
-    }
-    */
   }
 
   .item-selector {
