@@ -166,7 +166,9 @@
               </div>
               <div class="monit">
                 <div class="monit-bottom-border"></div>
-                <div style="width: 200px; height: 100px">123</div>
+                <div style="width: 210px; height: 150px; padding: 8px">
+                  <Pie />
+                </div>
               </div>
             </div>
           </div>
@@ -180,7 +182,11 @@
           <div class="title-wrapper"><i></i> 灯具监测详情 </div>
         </div>
         <div class="content">
-          <div class="content-wrapper">123 </div>
+          <div class="content-wrapper">
+            <div style="width: 100%; height: 100px">
+              <Line />
+            </div>
+          </div>
         </div>
       </div>
       <div class="panel">
@@ -220,6 +226,8 @@
   import { defineComponent, ref } from 'vue';
   import { Table } from 'ant-design-vue';
   import { EquipExceptionRecord } from '@/types/config';
+  import Pie from './pie.vue';
+  import Line from './line.vue';
 
   const equipmentExceptionRecords: EquipExceptionRecord[] = [
     {
@@ -309,6 +317,8 @@
     name: 'Home',
     components: {
       Table,
+      Pie,
+      Line,
     },
     setup() {
       const tableContainerHeight = ref(0);
