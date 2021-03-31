@@ -2,7 +2,7 @@
   <div ref="chartRef" style="height: 100%"></div>
 </template>
 <script lang="ts">
-  import { defineComponent, ref, nextTick } from 'vue';
+  import { defineComponent, ref, nextTick, PropType } from 'vue';
   import * as echarts from 'echarts/core';
   import { BarChart, BarSeriesOption } from 'echarts/charts';
   import { GridComponent } from 'echarts/components';
@@ -11,13 +11,6 @@
   type ECOption = echarts.ComposeOption<BarSeriesOption>;
   echarts.use([BarChart, CanvasRenderer, GridComponent]);
 
-  let data = [];
-  let data2 = [];
-  for (let i = 0; i < 100; i++) {
-    const num = Math.random() * 100;
-    data.push(num);
-    data2.push(0 - num);
-  }
   const pieOption: ECOption = {
     grid: {
       show: true,
@@ -30,6 +23,7 @@
     },
     xAxis: {
       type: 'category',
+      maxInterval: 1,
       axisLine: {
         show: false,
       },
@@ -63,7 +57,6 @@
       {
         type: 'bar',
         stack: 'num',
-        data: data,
         barWidth: 1,
         itemStyle: {
           color: '#39BCFF',
@@ -72,7 +65,6 @@
       {
         type: 'bar',
         stack: 'num',
-        data: data2,
         barWidth: 1,
         itemStyle: {
           color: '#39BCFF',
@@ -82,13 +74,28 @@
   };
   export default defineComponent({
     name: 'Line',
-    setup() {
+    props: {
+      dataSource: {
+        type: Array as PropType<number[]>,
+        default: () => [],
+      },
+    },
+    setup(props) {
       const chartRef = ref<HTMLImageElement | null>(null);
       nextTick(() => {
         if (chartRef.value) {
           const myChart = echarts.init(chartRef.value);
-          console.log(pieOption);
-          myChart.setOption(pieOption);
+          const arr = pieOption.series as Array<BarSeriesOption>;
+          arr[0].data = props.dataSource;
+          const data2: number[] = [];
+          props.dataSource.forEach((ele) => {
+            data2.push(0 - ele);
+          });
+          arr[1].data = data2;
+          setTimeout(() => {
+            console.log(pieOption, props.dataSource);
+            myChart.setOption(pieOption);
+          }, 3000);
         }
       });
 

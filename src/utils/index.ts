@@ -1,3 +1,5 @@
+import { isObject } from './is';
+
 export function es6Unique<T>(arr: T[]): T[] {
   return Array.from(new Set(arr));
 }
@@ -22,4 +24,12 @@ export function openWindow(
   noreferrer && feature.push('noreferrer=yes');
 
   window.open(url, target, feature.join(','));
+}
+
+export function deepMerge<T = any>(src: any = {}, target: any = {}): T {
+  let key: string;
+  for (key in target) {
+    src[key] = isObject(src[key]) ? deepMerge(src[key], target[key]) : (src[key] = target[key]);
+  }
+  return src;
 }

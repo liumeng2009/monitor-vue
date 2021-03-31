@@ -22,6 +22,10 @@ export function isArray(val: any): val is Array<any> {
   return val && Array.isArray(val);
 }
 
+export function isObject(val: any): val is Record<any, any> {
+  return val !== null && is(val, 'Object');
+}
+
 export const isServer = typeof window === 'undefined';
 
 export function isUrl(path: string): boolean {

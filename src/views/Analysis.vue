@@ -184,7 +184,7 @@
         <div class="content">
           <div class="content-wrapper">
             <div style="width: 100%; height: 100px">
-              <Line />
+              <Line :dataSource="list" />
             </div>
           </div>
         </div>
@@ -223,7 +223,7 @@
 </template>
 
 <script lang="ts">
-  import { defineComponent, ref } from 'vue';
+  import { defineComponent, reactive, ref } from 'vue';
   import { Table } from 'ant-design-vue';
   import { EquipExceptionRecord } from '@/types/config';
   import Pie from './pie.vue';
@@ -347,10 +347,15 @@
 
       calWrapperHeight();
 
+      let list = reactive<Number[]>([]);
+      setTimeout(() => {
+        list.push(...[1, 2, 3, 4, 5, 1, 2, 3, 4, 5, 1, 2, 3, 4, 5, 1, 2, 3, 4, 5]);
+      }, 2000);
       return {
         tableContainerHeight,
         equipExcetionColumns,
         equipmentExceptionRecords,
+        list,
       };
     },
   });
